@@ -3,11 +3,10 @@ module "ec2_remote_development" {
   version                = "~> 2.0"
   name                   = "remote_dev_${random_string.id.result}"
   ami                    = data.aws_ami.amazon-linux-2.id
-  instance_type          = "t3a.medium"
+  instance_type          = var.instance_type
   key_name               = aws_key_pair.generated_key.key_name
   vpc_security_group_ids = [aws_security_group.ssh.id]
-
-  subnet_id               = "subnet-055a2e2a1f2c326ba"
+  subnet_id              = var.subnet_id
 }
 
 output "public-ip" {
