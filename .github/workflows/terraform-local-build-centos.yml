@@ -1,0 +1,47 @@
+name: "Terraform Local Build CentOS Data"
+
+on:
+  push:
+    branches:
+
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: "Configure AWS Credentials"
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          # AWS Access Key ID. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_RO }}
+          # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_RO }}
+          # AWS Region, e.g. us-east-2
+          aws-region: us-east-1
+
+      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: CentOS Terraform Init
+        run: (cd aws/terraform/data/centos && terraform init) 
+
+      # Checks that all Terraform configuration files adhere to a canonical format
+      - name: CentOS Terraform Format
+        run: (cd aws/terraform/data/centos && terraform fmt -check)
+
+      # Generates an execution plan for Terraform
+      - name: CentOS Terraform Plan
+        run: (cd aws/terraform/data/centos && terraform plan)
+
