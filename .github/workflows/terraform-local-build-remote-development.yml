@@ -1,4 +1,4 @@
-name: "Terraform Local Build"
+name: "Terraform Local Build Remote Development"
 
 on:
   push:

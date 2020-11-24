@@ -1,4 +1,4 @@
-name: "Terraform Local Build"
+name: "Terraform Local Build CentOS Data"
 
 on:
   push:
