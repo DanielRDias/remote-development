@@ -3,6 +3,7 @@ package test
 import (
 	"testing"
 
+	// "github.com/gruntwork-io/terratest/modules/aws"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
 )
@@ -16,7 +17,8 @@ func TestAwsTerraformCentosAmi(t *testing.T) {
 	arch := "x86_64"
 	// Pick a random AWS region to test in. This helps ensure your code works in all regions.
 	// awsRegion := aws.GetRandomStableRegion(t, nil, nil)
-	awsRegion := "eu-central-1"
+	// Currently using fixed region due to my SCP restrictions
+	awsRegion := "us-east-1"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
