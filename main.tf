@@ -22,5 +22,5 @@ provider "aws" {
 }
 
 module "centos_ami" {
-  source = "./aws/terraform/data/centos"
+  source = "./modules/ami/centos"
 }

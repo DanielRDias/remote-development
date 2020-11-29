@@ -20,7 +20,7 @@ func TestAwsTerraformCentosAmi(t *testing.T) {
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
-		TerraformDir: "../aws/terraform/data/centos",
+		TerraformDir: "../modules/ami/centos",
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{
