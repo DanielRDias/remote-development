@@ -7,12 +7,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// Test if Terraform returns a valid Cent OS AMI using Terratest.
-func TestAwsTerraformCentosAmi(t *testing.T) {
+// Test if Terraform returns a valid Amazon AMI using Terratest.
+func TestAwsTerraformAmazonAmi(t *testing.T) {
 	t.Parallel()
 
 	expectedAmi := "ami-"
-	osVersion := "8.2"
+	osVersion := "amzn2-ami-hvm"
 	arch := "x86_64"
 	// Pick a random AWS region to test in. This helps ensure your code works in all regions.
 	// awsRegion := aws.GetRandomStableRegion(t, nil, nil)
@@ -20,7 +20,7 @@ func TestAwsTerraformCentosAmi(t *testing.T) {
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
-		TerraformDir: "../modules/ami/centos",
+		TerraformDir: "../modules/ami/amazon",
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{

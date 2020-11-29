@@ -24,3 +24,7 @@ provider "aws" {
 module "centos_ami" {
   source = "./modules/ami/centos"
 }
+
+module "amazon_ami" {
+  source = "./modules/ami/amazon"
+}
