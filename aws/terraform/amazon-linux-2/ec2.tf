@@ -4,9 +4,18 @@ module "ec2_remote_development" {
   name                   = "remote_dev_${random_string.id.result}"
   ami                    = data.aws_ami.amazon-linux-2.id
   instance_type          = var.instance_type
-  key_name               = aws_key_pair.generated_key.key_name
+  key_name               = module.key.key_name
   vpc_security_group_ids = [aws_security_group.ssh.id]
   subnet_id              = var.subnet_id
+}
+
+module "key" {
+  source = "../../../modules/key"
+}
+
+resource "random_string" "id" {
+  length  = 5
+  special = false
 }
 
 output "public-ip" {
