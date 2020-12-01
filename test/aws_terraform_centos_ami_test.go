@@ -46,7 +46,7 @@ func TestAwsTerraformCentosAmi(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 
 	// Run `terraform output` to get the values of output variables
-	actualAmi := terraform.Output(t, terraformOptions, "ami_id")
+	actualAmi := terraform.Output(t, terraformOptions, "id")
 
 	// Verify we're getting back the outputs we expect
 	assert.Contains(t, actualAmi, expectedAmi)
