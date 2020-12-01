@@ -1,4 +1,3 @@
-
 output "key_name" {
   description = "Generated key name"
   value       = aws_key_pair.generated_key.key_name

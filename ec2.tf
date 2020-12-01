@@ -21,13 +21,3 @@ resource "random_string" "id" {
   length  = 5
   special = false
 }
-
-output "public-ip" {
-  description = "EC2 public IP"
-  value       = module.ec2_remote_development.public_ip
-}
-
-output "private-ip" {
-  description = "EC2 private IP"
-  value       = module.ec2_remote_development.private_ip
-}
