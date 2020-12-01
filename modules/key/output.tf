@@ -1,19 +1,4 @@
-resource "random_string" "id" {
-  length  = 5
-  special = false
-}
-
-resource "tls_private_key" "generated_key" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-resource "aws_key_pair" "generated_key" {
-  key_name   = "remote_dev_${random_string.id.result}"
-  public_key = tls_private_key.generated_key.public_key_openssh
-}
-
-output "generated_key_name" {
+output "key_name" {
   description = "Generated key name"
   value       = aws_key_pair.generated_key.key_name
 }

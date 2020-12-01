@@ -37,9 +37,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_RO }}
           # AWS Secret Access Key. This input is required if running in the GitHub hosted environment. It is optional if running in a self-hosted environment that already has AWS credentials, for example on an EC2 instance.
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_RO }}
-          # AWS Region, e.g. us-east-2
+          # AWS Region, e.g. eu-central-1
           aws-region: us-east-1
 
       # Run go unit tests
       - name: Run unit tests
-        run: cd tests && go test -v -timeout 30m
+        run: go test ./... -v -timeout 30m

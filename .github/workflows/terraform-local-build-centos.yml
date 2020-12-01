@@ -35,13 +35,13 @@ jobs:
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: CentOS Terraform Init
-        run: (cd aws/terraform/data/centos && terraform init) 
+        run: (cd modules/ami/centos && terraform init) 
 
       # Checks that all Terraform configuration files adhere to a canonical format
       - name: CentOS Terraform Format
-        run: (cd aws/terraform/data/centos && terraform fmt -check)
+        run: (cd modules/ami/centos && terraform fmt -check)
 
       # Generates an execution plan for Terraform
       - name: CentOS Terraform Plan
-        run: (cd aws/terraform/data/centos && terraform plan)
+        run: (cd modules/ami/centos && terraform plan)
 

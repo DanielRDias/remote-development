@@ -3,24 +3,26 @@ package test
 import (
 	"testing"
 
-	"github.com/gruntwork-io/terratest/modules/aws"
+	// "github.com/gruntwork-io/terratest/modules/aws"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
 )
 
-// Test if Terraform returns a valid Cent OS AMI using Terratest.
-func TestAwsTerraformCentosAmi(t *testing.T) {
+// Test if Terraform returns a valid Amazon AMI using Terratest.
+func TestAwsTerraformAmazonAmi(t *testing.T) {
 	t.Parallel()
 
 	expectedAmi := "ami-"
-	osVersion := "8.2"
+	osVersion := "amzn2-ami-hvm"
 	arch := "x86_64"
 	// Pick a random AWS region to test in. This helps ensure your code works in all regions.
-	awsRegion := aws.GetRandomStableRegion(t, nil, nil)
+	// awsRegion := aws.GetRandomStableRegion(t, nil, nil)
+	// Currently using fixed region due to my SCP restrictions
+	awsRegion := "us-east-1"
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
 		// The path to where our Terraform code is located
-		TerraformDir: "../aws/terraform/data/centos",
+		TerraformDir: "../modules/ami/amazon",
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{
@@ -44,7 +46,7 @@ func TestAwsTerraformCentosAmi(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 
 	// Run `terraform output` to get the values of output variables
-	actualAmi := terraform.Output(t, terraformOptions, "ami_id")
+	actualAmi := terraform.Output(t, terraformOptions, "id")
 
 	// Verify we're getting back the outputs we expect
 	assert.Contains(t, actualAmi, expectedAmi)

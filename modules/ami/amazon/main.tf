@@ -1,4 +1,4 @@
-data "aws_ami" "amazon-linux-2" {
+data "aws_ami" "this" {
   most_recent = true
   owners      = ["amazon"]
 
@@ -9,6 +9,6 @@ data "aws_ami" "amazon-linux-2" {
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm*"]
+    values = ["${var.os_version}*${var.arch}*"]
   }
 }

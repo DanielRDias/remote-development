@@ -1,4 +1,4 @@
-output "ami_id" {
+output "id" {
   value = data.aws_ami.this.id
 }
 output "ami" {
