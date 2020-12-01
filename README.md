@@ -3,9 +3,9 @@
 This project provides an easy-to-use remote development server.
 With this server you can work from anywhere and develop remotely on any desktop.
 
-![Main Build](https://github.com/DanielRDias/remote-development/.github/workflows/terraform-main-build.yml/badge.svg)
-![Unit Tests](https://github.com/DanielRDias/remote-development/.github/workflows/terraform-unit-test.yml/badge.svg)
-![CentOS AMI](https://github.com/DanielRDias/remote-development/.github/workflows/terraform-local-build-centos.yml/badge.svg)
+![Main Build](https://github.com/DanielRDias/remote-development/workflows/Main%20Build/badge.svg)
+![Unit Tests](https://github.com/DanielRDias/remote-development/workflows/Unit%20Tests/badge.svg)
+![CentOS AMI](https://github.com/DanielRDias/remote-development/workflows/CentOS%20AMI/badge.svg)
 
 ## Why
 

@@ -1,4 +1,4 @@
-name: "Terraform Local Build CentOS Data"
+name: "CentOS AMI"
 
 on:
   push:
