@@ -3,6 +3,10 @@
 This project provides an easy-to-use remote development server.
 With this server you can work from anywhere and develop remotely on any desktop.
 
+![Main Build](https://github.com/DanielRDias/remote-development/.github/workflows/terraform-main-build.yml/badge.svg)
+![Unit Tests](https://github.com/DanielRDias/remote-development/.github/workflows/terraform-unit-test.yml/badge.svg)
+![CentOS AMI](https://github.com/DanielRDias/remote-development/.github/workflows/terraform-local-build-centos.yml/badge.svg)
+
 ## Why
 
 1. **Develop in a different OS**: One of the most significant advantages is that it allows you to develop in the same OS as my production servers, but without using that same OS on my local PC. Or maybe you own a windows machine and want to develop in Linux.
@@ -39,31 +43,17 @@ Optional:
 
 ### Deploy remote development server
 
-1) Select your hosting provider, infrastructure deployment framework, and remote server OS.
-
-   Example:
-
-   Hosting provider: AWS
-
-   Infrastructure deployment framework: Terraform
-
-   Remote server OS: Amazon Linux 2
-
-   `cd aws/terraform/amazon-linux-2/`
-
-2) Configure your remote server
+1) Configure your remote server
 
    Open terraform.auto.tfvars and adjust the settings to your needs.
 
-3) Deploy the infrastructure
-
-   Note: Run the commands in the folder where you did the previous configuration. Example: `cd aws/terraform/amazon-linux-2/`
+2) Deploy the infrastructure
 
    Run `terraform init`
 
    Run `terraform apply` review what will be deployed, if you agree, type `yes` to deploy.
 
-4) Configure the remote server access
+3) Configure the remote server access
 
    If you didn't configure the deployment with your own SSH a new key will be generated for you.
 
@@ -71,13 +61,13 @@ Optional:
 
    ![private key](docs/img/private_pem.png)
 
-   Connect to the server using the private key and the server IP. 
+   Connect to the server using the private key and the server IP.
 
    Example: `ssh -i "C:\Users\Danie\.ssh\remotedev.pem" ec2-user@35.172.146.46`
 
    ![ssh](docs/img/ssh.png)
 
-5) Delete the remote server
+4) Delete the remote server
 
    To save costs, you can delete the server when you don't need it.
 
@@ -103,20 +93,31 @@ Optional:
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| aws | ~> 3.0 |
+No requirements.
 
 ## Providers
 
-No provider.
+| Name | Version |
+|------|---------|
+| aws | n/a |
+| random | n/a |
 
 ## Inputs
 
-No input.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| instance\_type | The type of instance to start | `string` | n/a | yes |
+| subnet\_id | The VPC Subnet ID to launch in | `string` | `""` | no |
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| key\_name | Generated key name |
+| private-ip | EC2 private IP |
+| private\_key\_pem | SSH private pem key |
+| public-ip | EC2 public IP |
+| public\_key\_openssh | Open SSH public key |
+| public\_key\_pem | SSH public pem key |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
