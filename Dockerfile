@@ -3,7 +3,7 @@
 #######################################
 
 FROM alpine:3.11.3 as DEV
-ENV TERRAFORM_VERSION=0.12.29
+ENV TERRAFORM_VERSION=0.14.10
 ENV TERRAFORM_DOCS_VERSION=v0.8.2
 RUN apk add --update --upgrade --no-cache bash make git curl zsh graphviz
 
@@ -29,7 +29,8 @@ WORKDIR /app/
 #######################################
 
 FROM mhart/alpine-node:latest as RELEASE
-RUN apk add --update --upgrade --no-cache bash make git curl
+RUN apk add --update --upgrade --no-cache bash make git curl zsh
+# install oh-my-zsh
 RUN node -v && npm -v
 RUN npm install --global release-it @release-it/conventional-changelog semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/commit-analyzer @semantic-release/release-notes-generator
 WORKDIR /app/

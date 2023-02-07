@@ -7,6 +7,7 @@ services:
       target: DEV
     volumes:
       - .:/app/
+      - ~/.aws/credentials:/root/.aws/credentials:ro
 
   docs:
     build:

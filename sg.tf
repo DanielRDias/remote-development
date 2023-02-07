@@ -1,5 +1,5 @@
 resource "aws_security_group" "ssh" {
-  name        = "allow_ssh"
+  name        = "allow_ssh_remote-dev-${var.application}-${var.user_name}"
   description = "Allow SSH inbound traffic"
 
   ingress {
@@ -7,7 +7,7 @@ resource "aws_security_group" "ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.access_cidr
   }
 
   egress {
@@ -17,7 +17,9 @@ resource "aws_security_group" "ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  vpc_id = var.vpc_id
+
   tags = {
-    Name = "allow_ssh"
+    Name = "remote-dev-${var.default_tags["Application"]}-${var.user_name}"
   }
 }

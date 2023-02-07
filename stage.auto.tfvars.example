@@ -1,0 +1,52 @@
+application       = "remote-development"
+ec2_instance_type = "t3.micro"
+root_volume_size  = 30
+data_volume_size  = 50
+
+# Settings for eu-central-1
+region     = "eu-central-1"
+az         = "eu-central-1a"
+
+vpc_id     = "vpc-xxxxx"
+subnet_ids = ["subnet-xxxxxx"]
+
+# If you only want to grant access to your own IP change this to ["your.ip/32"]
+access_cidr = ["0.0.0.0/0"]
+
+user_name       = "YOUR NAME/USERNAME"
+# If you want a key to be generated for you, set this variable as an empty string ""
+ssh_public_key = "ssh-rsa xxxxx"
+
+# Set with your GitHub Name and Email
+GIT_EMAIL = ""
+GIT_NAME  = ""
+
+# Enable scheduler and set your personal start/stop time for the EC2 instance a cron expression in UTC
+enable_scheduler  = false
+start_time        = "cron(0 6 ? * MON-FRI *)"
+stop_time         = "cron(0 16 ? * MON-FRI *)"
+
+# List of custom SW (yum) packages to be installed during deployment. Separated by SPACES.
+custom_packages = "htop docker"
+
+# List of npm packages to be gloabally installed during deployment. . Separated by SPACES.
+npm_packages = "serverless commitizen aws-cdk"
+
+# Set to true to install brew.sh package manager
+install_brew = true
+# List of brew packages to be installed during deployment. Separated by SPACES.
+# Requires "install_brew = true". Note: do not install node related packages with brew
+brew_packages = "gcc gh tfenv terragrunt python pipenv go rust docker-compose"
+
+
+# Install packages with fun included (neofetch, figlet, cowsay, lolcat,..)
+fun_packages = false
+
+default_tags = {
+  Name               = "remote-development"
+  Application        = "aws2022"
+  Owner              = "YOUR NAME/USERNAME"
+}
+
+backup_retention_days = 7
+enable_backup         = true
